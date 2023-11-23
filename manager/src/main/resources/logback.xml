@@ -1,0 +1,43 @@
+<configuration>
+    <appender name="CONSOLE_JSON" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+                <jsonFormatter class="com.disney.dss.omp.util.EscapingJacksonJsonFormatter">
+                    <prettyPrint>false</prettyPrint>
+                </jsonFormatter>
+                <timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSSX</timestampFormat>
+                <appendLineSeparator>true</appendLineSeparator>
+            </layout>
+        </encoder>
+    </appender>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <if condition='isDefined("JSON_LOGGING")'>
+        <then>
+            <root level="INFO">
+                <appender-ref ref="CONSOLE_JSON"/>
+            </root>
+        </then>
+        <else>
+            <root level="INFO">
+                <appender-ref ref="CONSOLE"/>
+            </root>
+        </else>
+    </if>
+    <logger name="com.amazonaws.services" level="WARN"/>
+    <!-- Trying to get some detailed akka logging, but omit some especially noisy/low-value ones -->
+    <logger name="akka" level="DEBUG"/>
+    <logger name="akka.http.impl.engine.client.PoolId" level="INFO"/>
+    <logger name="akka.io.TcpOutgoingConnection" level="INFO"/>
+    <logger name="akka.io.SimpleDnsManager" level="INFO"/>
+    <logger name="akka.io.InetAddressDnsResolver" level="INFO"/>
+    <logger name="com.disney.dss.omp" level="DEBUG"/>
+    <!-- Change to DEBUG level to enable generated SQL statement logging -->
+    <logger name="scala.slick" level="WARN" />
+    <logger name="slick.jdbc" level="WARN" />
+</configuration>
