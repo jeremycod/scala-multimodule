@@ -1,0 +1,12 @@
+/.bsp/
+/.idea/
+/child/.bsp/
+/child/.idea/
+*/target/
+/common/.bsp/
+/common/.idea/
+/common/project/target/
+/target/
+/manager/.bsp/
+/manager/.idea/
+/manager/project/target/
