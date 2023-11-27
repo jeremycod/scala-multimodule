@@ -1,6 +1,6 @@
 # scala-multimodule
 
-To reproduce the problem with ZIO logging not working when fork is used, run application using IntelliJ run Configuration
+To reproduce the problem with ZIO logging provided through ZLayer not working when fork is used, run application using IntelliJ run Configuration
 * as a tasks set "manager/run"
 * uncheck "Use sbt shell"
 
